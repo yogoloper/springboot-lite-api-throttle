@@ -5,10 +5,6 @@ Spring Boot REST API를 위한 **Lightweight Rate Limiting & API Quota 관리 �
 👉 단일 인스턴스 (In-memory) + 분산 시스템 (Redis) 모두 지원  
 👉 표준 JSON 에러 응답 제공  
 
-[![Build Status](https://github.com/[your-username]/springboot-lite-api-throttle/workflows/CI/badge.svg)](https://github.com/[your-username]/springboot-lite-api-throttle/actions)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.example/springboot-lite-api-throttle/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.example/springboot-lite-api-throttle)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
 ---
 
 ## 📌 프로젝트 개요
