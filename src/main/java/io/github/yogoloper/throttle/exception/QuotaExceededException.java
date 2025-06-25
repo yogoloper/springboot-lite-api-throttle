@@ -4,11 +4,11 @@ import java.time.Instant;
 
 public class QuotaExceededException extends ThrottleException {
     private final String period;  // "daily", "monthly"
-    private final long limit;
-    private final long remaining;
+    private final int limit;
+    private final int remaining;
     private final Instant resetTime;
 
-    public QuotaExceededException(String message, String period, long limit, long remaining, Instant resetTime) {
+    public QuotaExceededException(String message, String period, int limit, int remaining, Instant resetTime) {
         super(message);
         this.period = period;
         this.limit = limit;
@@ -16,9 +16,19 @@ public class QuotaExceededException extends ThrottleException {
         this.resetTime = resetTime;
     }
 
-    // Getters
-    public String getPeriod() { return period; }
-    public long getLimit() { return limit; }
-    public long getRemaining() { return remaining; }
-    public Instant getResetTime() { return resetTime; }
+    public String getPeriod() {
+        return period;
+    }
+
+    public int getLimit() {
+        return limit;
+    }
+
+    public int getRemaining() {
+        return remaining;
+    }
+
+    public Instant getResetTime() {
+        return resetTime;
+    }
 }

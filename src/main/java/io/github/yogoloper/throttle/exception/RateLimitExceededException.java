@@ -16,9 +16,19 @@ public class RateLimitExceededException extends ThrottleException {
         this.timestamp = timestamp;
     }
 
-    // Getters
-    public long getRetryAfterSeconds() { return retryAfterSeconds; }
-    public int getLimit() { return limit; }
-    public int getRemaining() { return remaining; }
-    public Instant getTimestamp() { return timestamp; }
+    public long getRetryAfterSeconds() { 
+        return retryAfterSeconds;
+    }
+
+    public int getLimit() { 
+        return limit; 
+    }
+
+    public int getRemaining() { 
+        return remaining; 
+    }
+
+    public Instant getTimestamp() { 
+        return timestamp; 
+    }
 }

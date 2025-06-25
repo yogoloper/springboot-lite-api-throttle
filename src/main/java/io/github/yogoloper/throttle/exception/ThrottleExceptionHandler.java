@@ -4,15 +4,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-
 import io.github.yogoloper.throttle.model.ErrorResponse;
 
 @RestControllerAdvice
 public class ThrottleExceptionHandler {
 
-    /**
-     * Rate limit 초과시 응답 형식
-     */
     @ExceptionHandler(RateLimitExceededException.class)
     public ResponseEntity<ErrorResponse.RateLimitResponse> handleRateLimitExceeded(RateLimitExceededException ex) {
         return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS)
@@ -26,9 +22,6 @@ public class ThrottleExceptionHandler {
                 .build());
     }
 
-    /**
-     * Quota 초과시 응답 형식
-     */
     @ExceptionHandler(QuotaExceededException.class)
     public ResponseEntity<ErrorResponse.QuotaResponse> handleQuotaExceeded(QuotaExceededException ex) {
         return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS)
