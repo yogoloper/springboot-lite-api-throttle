@@ -34,15 +34,15 @@ Spring Boot REST API를 위한 **Lightweight Rate Limiting & API Quota 관리 �
 ### Maven
 ```xml
 <dependency>
-    <groupId>com.example</groupId>
+    <groupId>io.throttle</groupId>
     <artifactId>springboot-lite-api-throttle</artifactId>
-    <version>1.0.0</version>
+    <version>0.0.1-SNAPSHOT</version>
 </dependency>
 ```
 
 ### Gradle
 ```gradle
-implementation 'com.example:springboot-lite-api-throttle:1.0.0'
+implementation 'io.throttle:springboot-lite-api-throttle:0.0.1-SNAPSHOT'
 ```
 
 ### 기본 설정
