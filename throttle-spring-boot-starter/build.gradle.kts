@@ -39,6 +39,9 @@ dependencies {
     // Spring Web (RequestKeyGenerator를 위해)
     api("org.springframework.boot:spring-boot-starter-web")
     
+    // Spring AOP (Aspect를 위해)
+    api("org.springframework.boot:spring-boot-starter-aop")
+    
     // Spring Boot Auto Configuration
     api("org.springframework.boot:spring-boot-autoconfigure")
     

@@ -33,6 +33,16 @@ public class ThrottleProperties {
      */
     private DefaultQuota defaultQuota = new DefaultQuota();
     
+    /**
+     * JWT 설정
+     */
+    private Jwt jwt = new Jwt();
+    
+    /**
+     * API 키 설정
+     */
+    private ApiKey apiKey = new ApiKey();
+    
     public enum StorageType {
         MEMORY, REDIS
     }
@@ -89,6 +99,30 @@ public class ThrottleProperties {
         public void setMonthly(int monthly) { this.monthly = monthly; }
     }
     
+    public static class Jwt {
+        private String header = "Authorization";
+        private String secret;
+        private String prefix = "Bearer ";
+        
+        // Getters and Setters
+        public String getHeader() { return header; }
+        public void setHeader(String header) { this.header = header; }
+        
+        public String getSecret() { return secret; }
+        public void setSecret(String secret) { this.secret = secret; }
+        
+        public String getPrefix() { return prefix; }
+        public void setPrefix(String prefix) { this.prefix = prefix; }
+    }
+    
+    public static class ApiKey {
+        private String header = "X-API-Key";
+        
+        // Getters and Setters
+        public String getHeader() { return header; }
+        public void setHeader(String header) { this.header = header; }
+    }
+    
     // Getters and Setters
     public boolean isEnabled() { return enabled; }
     public void setEnabled(boolean enabled) { this.enabled = enabled; }
@@ -104,4 +138,15 @@ public class ThrottleProperties {
     
     public DefaultQuota getDefaultQuota() { return defaultQuota; }
     public void setDefaultQuota(DefaultQuota defaultQuota) { this.defaultQuota = defaultQuota; }
+    
+    public Jwt getJwt() { return jwt; }
+    public void setJwt(Jwt jwt) { this.jwt = jwt; }
+    
+    public ApiKey getApiKey() { return apiKey; }
+    public void setApiKey(ApiKey apiKey) { this.apiKey = apiKey; }
+    
+    // 편의 메서드
+    public String getJwtHeader() { return jwt.getHeader(); }
+    public String getJwtSecret() { return jwt.getSecret(); }
+    public String getApiKeyHeader() { return apiKey.getHeader(); }
 } 
