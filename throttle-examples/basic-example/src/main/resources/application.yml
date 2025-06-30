@@ -1,0 +1,19 @@
+server:
+  port: 8080
+
+# Throttle 설정
+api-throttle:
+  enabled: true
+  default-storage: memory  # In-Memory 사용
+  
+  # 기본 할당량 설정
+  default-quota:
+    daily: 1000
+    monthly: 30000
+
+# 로깅 설정
+logging:
+  level:
+    io.throttle: TRACE
+    org.springframework.web: INFO
+    org.springframework.aop: DEBUG 

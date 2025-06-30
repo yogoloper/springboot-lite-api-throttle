@@ -29,9 +29,14 @@ public class RateLimitAspect {
 
     @Around("@annotation(rateLimitAnnotation)")
     public Object around(ProceedingJoinPoint joinPoint, io.throttle.spring.annotation.RateLimit rateLimitAnnotation) throws Throwable {
+        log.info("=== RateLimitAspect triggered ===");
+        log.info("Method: {}", joinPoint.getSignature().getName());
+        log.info("Rate limit annotation: requests={}, per={}", 
+                 rateLimitAnnotation.requests(), rateLimitAnnotation.per());
+        
         String key = requestKeyGenerator.generateKey();
         
-        log.debug("Rate limit check for key: {}, limit: {} requests per {}", 
+        log.info("Rate limit check for key: {}, limit: {} requests per {}", 
                  key, rateLimitAnnotation.requests(), rateLimitAnnotation.per());
         
         try {
@@ -41,18 +46,26 @@ public class RateLimitAspect {
                 Duration.of(1, rateLimitAnnotation.per().toChronoUnit()),
                 key
             );
+            
+            log.info("Checking rate limit: {}", rateLimit);
             rateLimitService.checkLimit(key, rateLimit);
+            log.info("Rate limit check passed");
             
             // 요청 처리
             Object result = joinPoint.proceed();
             
             // 성공 시 카운트 증가
+            log.info("Incrementing rate limit counter");
             rateLimitService.increment(key, rateLimit);
+            log.info("Rate limit counter incremented");
             
             return result;
             
         } catch (RateLimitExceededException e) {
-            log.warn("Rate limit exceeded for key: {}", key);
+            log.info("Rate limit exceeded for key: {}", key);
+            throw e;
+        } catch (Exception e) {
+            log.error("Error in RateLimitAspect: {}", e.getMessage(), e);
             throw e;
         }
     }

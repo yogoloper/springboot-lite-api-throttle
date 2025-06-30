@@ -1,1 +1,1 @@
-io.throttle.config.ThrottleAutoConfiguration 
+io.throttle.spring.config.ThrottleAutoConfiguration 
