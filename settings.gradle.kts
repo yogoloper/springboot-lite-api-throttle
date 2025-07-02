@@ -10,3 +10,5 @@ include("throttle-redis")
 
 // 예제 모듈들
 include("throttle-examples:basic-example")
+include("throttle-examples:redis-example")
+include("throttle-examples:jwt-example")

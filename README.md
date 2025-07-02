@@ -164,6 +164,47 @@ cd springboot-lite-api-throttle
 
 ---
 
+## 📚 사용 예제
+
+이 프로젝트는 다양한 사용 사례를 보여주는 예제들을 포함하고 있습니다:
+
+### 1. 기본 예제 (`throttle-examples/basic-example`)
+- 기본적인 Rate Limiting과 Quota 사용법
+- In-Memory 저장소 사용
+- 단일 인스턴스 환경에서의 API 보호
+
+```bash
+cd throttle-examples/basic-example
+./gradlew bootRun
+# http://localhost:8080/api/public
+```
+
+### 2. Redis 분산 환경 예제 (`throttle-examples/redis-example`)
+- Redis 기반 분산 환경에서의 Rate Limiting
+- 여러 서버 인스턴스 간 제한 공유
+- 마이크로서비스 아키텍처에서의 사용법
+
+```bash
+# Redis 서버 실행 필요
+cd throttle-examples/redis-example
+./gradlew bootRun
+# http://localhost:8081/api/distributed
+```
+
+### 3. JWT 인증 예제 (`throttle-examples/jwt-example`)
+- JWT 토큰 기반 사용자별 API 제한
+- 사용자 타입별 차등 제한 (FREE, PREMIUM, ENTERPRISE)
+- 인증과 제한의 통합 구현
+
+```bash
+cd throttle-examples/jwt-example
+./gradlew bootRun
+# http://localhost:8082/api/auth/login
+# http://localhost:8082/api/user-profile
+```
+
+---
+
 ## 📋 요구사항
 
 - Java 11 이상

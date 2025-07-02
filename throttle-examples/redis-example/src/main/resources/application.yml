@@ -1,0 +1,61 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: throttle-redis-example
+  
+  # Redis 설정
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      database: 0
+      timeout: 2000ms
+      lettuce:
+        pool:
+          max-active: 8
+          max-idle: 8
+          min-idle: 0
+          max-wait: -1ms
+
+# Throttle 라이브러리 설정
+api-throttle:
+  enabled: true
+  default-storage: redis  # Redis 사용
+  
+  # Redis 특정 설정
+  redis:
+    host: localhost
+    port: 6379
+    database: 0
+    timeout: 2000ms
+  
+  # 기본 Rate Limit 설정
+  default-rate-limit:
+    requests: 100
+    time-unit: MINUTES
+    key-type: IP
+  
+  # 기본 Quota 설정
+  default-quota:
+    daily: 1000
+    monthly: 30000
+  
+  # JWT 설정
+  jwt:
+    header: Authorization
+    secret: your-secret-key-here
+    prefix: "Bearer "
+  
+  # API Key 설정
+  api-key:
+    header: X-API-Key
+
+# 로깅 설정
+logging:
+  level:
+    io.throttle: DEBUG
+    org.springframework.data.redis: INFO
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n" 

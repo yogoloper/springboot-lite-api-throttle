@@ -1,0 +1,36 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: throttle-jwt-example
+
+# Throttle 라이브러리 설정
+api-throttle:
+  enabled: true
+  default-storage: memory  # In-Memory 사용
+  
+  # JWT 설정
+  jwt:
+    header: Authorization
+    secret: your-secret-key-here-make-it-long-enough-for-hs256
+    prefix: "Bearer "
+  
+  # 기본 Rate Limit 설정
+  default-rate-limit:
+    requests: 100
+    time-unit: MINUTES
+    key-type: USER
+  
+  # 기본 Quota 설정
+  default-quota:
+    daily: 1000
+    monthly: 30000
+
+# 로깅 설정
+logging:
+  level:
+    io.throttle: DEBUG
+    io.throttle.examples: DEBUG
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n" 
